@@ -1,0 +1,32 @@
+.sidebar {
+  position: fixed;
+  width: 256px;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  border-right: 1px solid #2c2d33;
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    margin: 1em;
+    margin-bottom: 2em;
+  }
+
+  .list {
+    width: 85%;
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 1em;
+
+    li {
+      width: 100%;
+      list-style: none;
+    }
+  }
+}

@@ -1,0 +1,5 @@
+@mixin setRoot($properties, $dictionary) {
+  @each $name, $color in $dictionary {
+    --#{$properties + "-" + $name}: #{$color};
+  }
+}

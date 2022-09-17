@@ -1,0 +1,19 @@
+$colors: (
+  primary: #fff,
+  background: #131313,
+  danger: #ff0000,
+  success: #0ddb84,
+);
+
+$gradients: (
+  primary: linear-gradient(65.58deg, rgba(0, 66, 255, 0.5) -11.84%, rgba(235, 0, 27, 0.5) 98.75%),
+  secondary:
+    linear-gradient(
+      141.79deg,
+      #822946 10.72%,
+      rgba(41, 42, 184, 0.9) 17.8%,
+      #6a69c2 30.06%,
+      rgba(138, 123, 128, 0.85) 58.45%,
+      #000000 100%
+    ),
+);
