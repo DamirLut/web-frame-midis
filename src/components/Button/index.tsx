@@ -5,13 +5,20 @@ import style from './style.module.scss';
 type ButtonProps = {
   children: React.ReactNode;
   className?: string;
-  background?: boolean;
+  background?: boolean | string;
   icon?: string;
+  border?: boolean;
 };
 
 export default function Button(props: ButtonProps) {
   const properties = {
-    background: props.background ? 'var(--gradient-primary)' : '',
+    background: props.background
+      ? typeof props.background === 'string'
+        ? props.background
+        : 'var(--gradient-primary)'
+      : '',
+    border: props.border ? '1px solid #fff' : '',
+    justifyContent: props.icon ? 'start' : '',
   } as React.CSSProperties;
 
   return (
@@ -22,11 +29,7 @@ export default function Button(props: ButtonProps) {
         !props.background && style.button__clear,
       )}
       style={properties}>
-      {props.icon ? (
-        <img className={style.icon} src={props.icon} />
-      ) : (
-        <div className={style.icon} />
-      )}
+      {props.icon && <img className={style.icon} src={props.icon} />}
       {props.children}
     </button>
   );

@@ -4,10 +4,13 @@ import MainPage from './pages/Main';
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<MainPage />} />
-      <Route path={'/auth'} element={<AuthPage />} />
-    </Routes>
+    <>
+      <div className="background"></div>
+      <Routes>
+        <Route path="/" element={<MainPage />} />
+        <Route path={'/auth'} element={<AuthPage />} />
+      </Routes>
+    </>
   );
 }
 

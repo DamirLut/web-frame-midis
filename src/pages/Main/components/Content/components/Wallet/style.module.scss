@@ -1,0 +1,50 @@
+.wallet-container {
+}
+
+.wallet-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.wallet-charts {
+  display: flex;
+  width: 400px;
+}
+
+.wallet-chart-card {
+  width: 50%;
+  padding: 1em;
+}
+
+.wallet-chart-type {
+  display: flex;
+  align-items: center;
+
+  > img {
+    position: absolute;
+  }
+
+  > span {
+    width: 100%;
+    text-align: center;
+    color: var(--color-text);
+  }
+
+  margin-bottom: 1em;
+}
+
+.wallet-coin-name {
+  > span {
+    font-size: xx-large;
+  }
+}
+
+.wallet-chart-cost {
+  text-align: center;
+  margin: 2em 0;
+  > span {
+    font-size: xx-large;
+  }
+}

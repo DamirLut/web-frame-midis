@@ -1,10 +1,9 @@
 .header {
-  position: fixed;
-  height: 95px;
+  height: 100%;
   padding: 25px 27px;
   border-bottom: 1px solid #2c2d33;
-  width: calc(100% - 256px);
-  left: 256px;
+  width: 100%;
   display: flex;
   justify-content: space-between;
+  background-color: var(--color-background);
 }

@@ -1,28 +1,23 @@
 .card {
   position: relative;
   padding: 1em;
-
   width: 100%;
   height: 100%;
 
-  $border: 2px;
-
-  background-clip: padding-box;
-  background-color: var(--color-background);
-  border: solid $border transparent;
-
   &::before {
-    position: absolute;
     content: '';
-    z-index: -1;
+    position: absolute;
     top: 0;
     left: 0;
-    bottom: 0;
     right: 0;
+    bottom: 0;
+    border-radius: 8px;
+    pointer-events: none;
+    $mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
 
-    margin: -$border;
-    border-radius: inherit;
-
-    background: var(--gradient-secondary);
+    border: 2px solid transparent;
+    background: var(--gradient-secondary) border-box;
+    -webkit-mask: $mask;
+    -webkit-mask-composite: destination-out;
   }
 }

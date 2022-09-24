@@ -6,6 +6,7 @@ import style from './style.module.scss';
 import IconHome from '@/assets/icons/home.svg';
 import IconInbox from '@/assets/icons/inbox.svg';
 import IconSettings from '@/assets/icons/settings.svg';
+import IconFriends from '@/assets/icons/friends.svg';
 
 import Separator from '@/components/Separator';
 
@@ -21,14 +22,7 @@ export default function Sidebar() {
     },
     {
       href: '/friends',
-      element: <Button>Друзья</Button>,
-    },
-    {
-      href: '/messages',
-      element: <Button icon={IconInbox}>Сообщения</Button>,
-    },
-    {
-      element: <Separator />,
+      element: <Button icon={IconFriends}>Друзья</Button>,
     },
     {
       href: '/messages',
