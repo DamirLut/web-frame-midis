@@ -9,4 +9,4 @@
 
 # Полезные ссылки
 
-figma: https://www.figma.com/file/QbgEdceOYHStWEOhppPuvL/Nft-project-(Copy)?node-id=0%3A1
+figma: https://clck.ru/32DAmi
