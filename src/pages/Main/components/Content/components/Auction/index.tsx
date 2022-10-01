@@ -3,7 +3,7 @@ import Card from '@/components/Card';
 
 import style from './style.module.scss';
 
-import huita from '@/assets/images/huita.png';
+
 import IconHeart from '@/assets/icons/heart.svg';
 import Button from '@/components/Button';
 
@@ -12,7 +12,6 @@ export default function Auction() {
     <div>
       <h1>Продам Есуса</h1>
       <Card className={style.card}>
-        <img className={style['image-embed']} src={huita} />
         <img className={style.heart} src={IconHeart} />
         <div>
           <h2>Макаренко Костя</h2>

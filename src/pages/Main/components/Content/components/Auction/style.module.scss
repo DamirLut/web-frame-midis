@@ -4,13 +4,6 @@
   display: flex;
   position: relative;
 
-  .image-embed {
-    position: absolute;
-    width: 420px;
-    left: -30px;
-    top: -25px;
-  }
-
   .heart {
     position: absolute;
     right: 1em;
@@ -18,12 +11,9 @@
   }
 
   > div {
-    position: absolute;
-    right: 1em;
     display: flex;
     flex-direction: column;
     gap: 1em;
-    width: 40%;
 
     .profile {
       display: flex;
