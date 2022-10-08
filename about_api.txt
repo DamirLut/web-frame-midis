@@ -1,0 +1,95 @@
+Все запросы на https://ytt.iky.su
+
+GET /room/create => RoomObject // Создание комнаты
+GET /perms => Array<PermObject>
+
+
+// Привелегии
+
+PermObject {
+  name: string,
+  color: string, // Тут отпиши, какой нужен типа "white" или "#FFFFFF"
+  add_video: boolen, // Может ли добавлять видео в плейлист
+  set_video: boolen, // Может ли скипать видео до нужного
+  change_time: boolen, // Может ли менять время у текущего видоса
+  set_mod: boolen, // Может ли назначать модеров
+}
+
+
+
+
+// Объект комнаты
+
+RoomObject {
+  id: string // ID Группы
+  pass: string // Пароль админа в md5
+  users: object // Объект пользователей
+  now: NowVideoObject
+  playlist: Array<VideoObject>
+  key: string // Передается лишь единажды в GET /room/create. В остальном случае его нет.
+}
+
+users: {
+  'socketID':{
+    name: string,
+    perms: 0 | 1 | 2 // Индекс в массиве привелегий (2 самый высокий)
+  }
+}
+
+VideoObject {
+  url: string
+}
+
+NowVideoObject {
+  url: string,
+  time: number
+}
+
+RoomObjectOnLeave {
+  leave: true
+}
+
+
+
+
+NewMessage {
+  text: string
+}
+
+ErrorAlert {
+  message: string
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Сокеты
+
+emit {params_in_json} => listener (object)
+
+
++ room-join {roomId, username, key} => room-info (RoomObject) || error (ErrorAlert)
+roomId - RoomObject (id)
+username - Опционально, если не укажешь, будет ник есуса
+key - Передается при создании комнаты GET /room/create, нужен для выдачи прав овнера
+
+
++ room-leave {} => room-info (RoomObjectOnLeave) || error (ErrorAlert)
+
+
++ room-msg {text} => room-incoming (NewMessage) || error (ErrorAlert)
+text - Сообщение
+
+
++ user-set-name {username} => room-info (RoomObject) || error (ErrorAlert)
+username - Опционально, если не укажешь, будет undefined (это шутка если что, он обязательный)
+
