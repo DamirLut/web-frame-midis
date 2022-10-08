@@ -39,7 +39,7 @@ export default function Video() {
 
   return (
     <div className={style['video-container']}>
-      <VideoWrapper src={''} />
+      <VideoWrapper src={room.playlist[0].formats.at(-1)?.url || ''} />
       <h1>{room.playlist[0].title}</h1>
       <input
         placeholder="Ссылка на видео"
