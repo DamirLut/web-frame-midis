@@ -3,6 +3,7 @@ import { getRecoil } from 'recoil-nexus';
 import { SocketContext } from '../../context/socket';
 import { RandomID } from '../../lib/random';
 import { RoomAtom } from '../../store/RoomAtom';
+import Div from '../Div';
 import Message, { MessageProps } from '../Message';
 import style from './style.module.scss';
 
@@ -54,13 +55,13 @@ export default function Chat() {
   };
 
   ///@ts-ignore
-  window.sendMessage = text=>socket.emit('room-message',{text});
+  window.sendMessage = (text) => socket.emit('room-message', { text });
 
   return (
-    <div className={style['chat-container']}>
+    <Div className={style['chat-container']}>
       <div className={style['message-container']}>
         {messages.map((message) => (
-          <Message {...message} key={(RandomID())}/>
+          <Message {...message} key={RandomID()} />
         ))}
         <div ref={chatRef} />
       </div>
@@ -72,6 +73,6 @@ export default function Chat() {
           onKeyDown={sendMessage}
         />
       </div>
-    </div>
+    </Div>
   );
 }

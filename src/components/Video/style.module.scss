@@ -1,34 +1,119 @@
-.video-container {
-  width: 70%;
+.video-container,
+.no-video-container {
+  width: 100%;
   padding: 1em;
 
-  > h1 {
+  > h1,
+  > h3 {
     margin-top: 1em;
+  }
+}
+
+.video-info {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.video-manager {
+  > label {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .playlist {
+    margin-top: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    > div {
+      display: flex;
+      gap: 5px;
+      padding: 5px;
+      cursor: pointer;
+      border-radius: 5px;
+
+      > img {
+        width: 12%;
+        border-radius: 5px;
+      }
+
+      > div {
+        word-break: break-all;
+        display: flex;
+        flex-direction: column;
+        > span {
+          color: var(--color);
+        }
+      }
+
+      &:hover {
+        background-color: var(--backgroundHover);
+      }
+    }
+    .current-video {
+      background-color: var(--backgroundHover);
+      cursor: default;
+    }
+  }
+}
+.no-video-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+
+  > img {
+    width: 33%;
+  }
+
+  > label {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
   }
 }
 
 .video-wrapper {
   position: relative;
-  border: 1px solid gray;
+  /* border: 1px solid gray; */
   border-radius: 5px;
+  display: flex;
 
   > video {
-    position: absolute;
+    position: unset; /* absolute; */
+    border: 1px solid gray;
     width: 100%;
     border-radius: inherit;
+  }
+
+  &:fullscreen {
+    > video {
+      border: none;
+    }
+
+    .video-controls {
+      opacity: 0;
+      transition: all 0.5s ease;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
   }
 
   .video-controls {
     position: absolute;
     display: flex;
     flex-direction: column;
-    bottom: 0;
+    bottom: 7px; /* 0; */
     width: 100%;
 
     > progress {
       width: 100%;
       border-radius: 0;
       padding: 0 5px;
+      cursor: pointer;
 
       &::-webkit-progress-bar {
         background-color: gray;
@@ -43,7 +128,12 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      color: #fff;
+      color: var(--color);
+
+      .time-elapsed {
+        cursor: default;
+        filter: invert(1) grayscale(1) contrast(9);
+      }
 
       > div {
         display: flex;
@@ -59,11 +149,12 @@
         outline: none;
         filter: invert(1);
         border-radius: 999px;
+        cursor: pointer;
 
         transition: all 300ms;
 
         &:hover {
-          background: #fff;
+          background: var(--color);
           filter: invert(0);
         }
       }

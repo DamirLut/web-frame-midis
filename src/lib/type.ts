@@ -1,7 +1,9 @@
 export type RoomInfo = {
   id: string;
   users: User[];
-  now: VideoData | null;
+  now: {
+    index: number;
+  };
   playlist: VideoData[];
 };
 
@@ -51,11 +53,14 @@ export type VideoData = {
   id: string;
   title: string;
   thumbnail: string;
-  formats: [
-    {
-      url: string;
-      width: number;
-      height: number;
-    },
-  ];
+  duration: number;
+  channel: {
+    name: string;
+    url: string;
+  };
+  formats: Array<{
+    url: string;
+    width: number;
+    height: number;
+  }>;
 };

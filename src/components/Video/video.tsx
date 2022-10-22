@@ -6,12 +6,7 @@ import IconFullscreen from '../../assets/icons/fullscreen.svg';
 import { SocketContext } from '../../context/socket';
 import { useRecoilValue } from 'recoil';
 import { RoomAtom } from '../../store/RoomAtom';
-
-function formatTime(time: number) {
-  const minutes = '' + Math.trunc((time % 3600) / 60);
-  const seconds = '' + Math.trunc((time % 3600) % 60);
-  return `${minutes.padStart(2, '0')}:${seconds.padStart(2, '0')}`;
-}
+import { formatTime } from '../../lib/tools';
 
 export default function VideoWrapper({ src }: { src: string }) {
   const socket = React.useContext(SocketContext);
@@ -27,14 +22,16 @@ export default function VideoWrapper({ src }: { src: string }) {
   });
   const user = room.users.find((user) => user.id === socket.id);
 
+  /*
   const resize = () => {
     if (wrapperRef.current && videoRef.current) {
       wrapperRef.current.style.height = videoRef.current.clientHeight + 'px';
     }
   };
+  */
 
   const onLoad = (e: any) => {
-    resize();
+    /* resize(); */
     setVideoState((prev) => ({ ...prev, duration: videoRef.current?.duration || 0 }));
   };
 
@@ -42,6 +39,22 @@ export default function VideoWrapper({ src }: { src: string }) {
     if (user?.perms === 2) {
       const playing = !videoState.playing;
       setVideoState((prev) => ({ ...prev, playing }));
+    }
+  };
+
+  const SwitchFullScreen = () => {
+    if (wrapperRef.current) {
+      if (
+        window.fullScreen ||
+        (window.innerWidth == screen.width && window.innerHeight == screen.height)
+      ) {
+        if (document.exitFullscreen) document.exitFullscreen();
+        else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+        else if (document.mozCancelFullScreen) document.mozCancelFullScreen();
+        else if (document.msExitFullscreen) document.msExitFullscreen();
+      } else {
+        wrapperRef.current.requestFullscreen();
+      }
     }
   };
 
@@ -97,7 +110,7 @@ export default function VideoWrapper({ src }: { src: string }) {
   }, [progressRef.current]);
 
   React.useEffect(() => {
-    resize();
+    /* resize(); */
     const onSync = (data: { time: number; id: string; state: 'PLAY' | 'PAUSE' }) => {
       if (user?.id !== data.id) {
         if (videoRef.current) {
@@ -116,12 +129,12 @@ export default function VideoWrapper({ src }: { src: string }) {
         }
       }
     };
-    window.addEventListener('resize', resize);
+    /* window.addEventListener('resize', resize); */
 
     socket.on('video-sync', onSync);
 
     return () => {
-      window.removeEventListener('resize', resize);
+      /* window.removeEventListener('resize', resize); */
       socket.off('video-sync', onSync);
     };
   }, []);
@@ -136,19 +149,19 @@ export default function VideoWrapper({ src }: { src: string }) {
         onClick={SwitchStatus}
       />
       <div className={style['video-controls']}>
-        <progress ref={progressRef} value={videoState.position / videoState.duration} />
+        <progress ref={progressRef} value={(videoState.position + 1) / videoState.duration} />
         <div>
           <div>
             <button className={style.button} onClick={SwitchStatus}>
               <img src={IconPlay} ref={playButtonRef} />
             </button>
-            <div>
+            <div className={style['time-elapsed']}>
               <time id="time-elapsed">{formatTime(videoState.position)}</time>
               <span> / </span>
               <time id="duration">{formatTime(videoState.duration)}</time>
             </div>
           </div>
-          <button className={style.button}>
+          <button className={style.button} onClick={SwitchFullScreen}>
             <img src={IconFullscreen} />
           </button>
         </div>

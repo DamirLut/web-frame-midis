@@ -1,0 +1,26 @@
+.search-input {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background-color: var(--backgroundSecondary);
+  padding: 0.3em 0.75em;
+  border-radius: 5px;
+  cursor: text;
+  border: 1px solid gray;
+
+  > img {
+    height: 60%;
+    cursor: pointer;
+    filter: invert(1);
+  }
+  > input {
+    width: 100%;
+    background: none;
+    border: none;
+    color: var(--color) !important;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}

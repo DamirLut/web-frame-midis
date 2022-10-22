@@ -32,7 +32,20 @@ function App() {
         setRoomData(data);
         console.log(data);
       });
-      socket.on('error', (data) => console.warn(data));
+      socket.on('error', (data) => {
+        switch (data.message) {
+          case 'Room not found':
+            window.location.replace('/')
+            break;
+          case 'Wait a minute':
+            alert('Wait a minute');
+            break;
+        
+          default:
+            break;
+        }
+        console.warn(data);
+      });
     });
   }, []);
 
